@@ -26,6 +26,11 @@ export const AppContextProvider = (props) => {
         somme: 50,
         description: "Au moins j'ai 50$...",
       },
+      {
+        index: 4,
+        somme: -100,
+        description: "J'ai payé le mcdo",
+      },
   ]);
 
   useEffect(() => {
