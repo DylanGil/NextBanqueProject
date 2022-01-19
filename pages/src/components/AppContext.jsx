@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+CI = false;
 
 const AppContext = createContext({});
 
@@ -44,7 +45,6 @@ export const AppContextProvider = (props) => {
     }, 0);
     setTotalIncomming(totalIncomming + resIn);
     setTotalOutgoing(totalOutgoing + resOut);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listOperations]);
 
   return (

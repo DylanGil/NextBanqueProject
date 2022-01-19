@@ -5,15 +5,16 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { Box, Grid, Typography } from "@mui/material";
 import AppContext from "./AppContext";
+CI = false;
 
 const Main = (props) => {
-    const compteur = 0;
+  const compteur = 0;
   const { listOperations, totalIncomming, totalOutgoing } =
     useContext(AppContext);
 
-    const formatDataNegative = (str) => {
-        return String(str).slice(1);
-    }
+  const formatDataNegative = (str) => {
+    return String(str).slice(1);
+  };
 
   return (
     <>
@@ -32,8 +33,9 @@ const Main = (props) => {
               if (somme < 0) {
                 return (
                   <>
-                  
-                  <ListItem sx = {{bgcolor: index % 2 == 0 ? "white" : "#EFF3F8"}}>
+                    <ListItem
+                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                    >
                       <ListItemText sx={{ textAlign: "right", height: "64px" }}>
                         <div>&nbsp;</div>
                         <div>&nbsp;</div>
@@ -44,7 +46,9 @@ const Main = (props) => {
               } else
                 return (
                   <>
-                    <ListItem sx = {{bgcolor: index % 2 == 0 ? "white" : "#EFF3F8"}}>
+                    <ListItem
+                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                    >
                       <ListItemText sx={{ textAlign: "right", height: "64px" }}>
                         <Typography sx={{ color: "#1CE800" }}>
                           {"+$" + somme}
@@ -90,7 +94,9 @@ const Main = (props) => {
               if (somme > 0) {
                 return (
                   <>
-                    <ListItem sx = {{bgcolor: index % 2 == 0 ? "white" : "#EFF3F8"}}>
+                    <ListItem
+                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                    >
                       <ListItemText sx={{ textAlign: "right", height: "64px" }}>
                         <div>&nbsp;</div>
                         <div>&nbsp;</div>
@@ -101,7 +107,9 @@ const Main = (props) => {
               } else
                 return (
                   <>
-                    <ListItem sx = {{bgcolor: index % 2 == 0 ? "white" : "#EFF3F8"}}>
+                    <ListItem
+                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                    >
                       <ListItemText sx={{ textAlign: "right", height: "64px" }}>
                         <Typography sx={{ color: "#F33731" }}>
                           {"-$" + formatDataNegative(somme)}
@@ -121,9 +129,9 @@ const Main = (props) => {
                   TOTAL
                 </Typography>
               </ListItemText>
-              <ListItemText sx={{ textAlign: "right"}}>
+              <ListItemText sx={{ textAlign: "right" }}>
                 <Typography sx={{ color: "#F33731" }}>
-                  {"-$"+ formatDataNegative(totalOutgoing)}
+                  {"-$" + formatDataNegative(totalOutgoing)}
                 </Typography>
               </ListItemText>
             </ListItem>
