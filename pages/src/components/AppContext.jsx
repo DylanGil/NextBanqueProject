@@ -22,10 +22,10 @@ export const AppContextProvider = (props) => {
       description: "AU VOLEUR !",
     },
     {
-        index: 3,
-        somme: 50,
-        description: "Au moins j'ai 50$...",
-      },
+      index: 3,
+      somme: 50,
+      description: "Au moins j'ai 50$...",
+    },
   ]);
 
   useEffect(() => {
@@ -44,6 +44,7 @@ export const AppContextProvider = (props) => {
     }, 0);
     setTotalIncomming(totalIncomming + resIn);
     setTotalOutgoing(totalOutgoing + resOut);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listOperations]);
 
   return (
