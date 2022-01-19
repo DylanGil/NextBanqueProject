@@ -5,7 +5,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { Box, Grid, Typography } from "@mui/material";
 import AppContext from "./AppContext";
-CI = false;
 
 const Main = (props) => {
   const compteur = 0;

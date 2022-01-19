@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Box } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
 import "@fontsource/roboto/700.css";
-CI = false;
 
 const Header = () => {
   return (

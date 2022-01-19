@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-CI = false;
 
 const AppContext = createContext({});
 
