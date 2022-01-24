@@ -1,10 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 const AppContext = createContext({});
 
 export const AppContextProvider = (props) => {
   const [totalIncomming, setTotalIncomming] = useState(0);
   const [totalOutgoing, setTotalOutgoing] = useState(0);
+  const [index, setIndex] = useState(0);
   const [listOperations, setListOperations] = useState([
     {
       index: 0,
@@ -49,12 +50,19 @@ export const AppContextProvider = (props) => {
     }, 0);
     setTotalIncomming(totalIncomming + resIn);
     setTotalOutgoing(totalOutgoing + resOut);
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listOperations]);
+
+  const handleSetDataList = useCallback((data) => {
+    setIndex(index + 1);
+    setListData([...listData, {...data, index: index}])
+  }, [])
 
   return (
     <AppContext.Provider
       {...props}
-      value={{ listOperations, totalIncomming, totalOutgoing }}
+      value={{ listOperations, totalIncomming, totalOutgoing, handleSetDataList }}
     />
   );
 };
