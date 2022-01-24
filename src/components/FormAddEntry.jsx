@@ -46,7 +46,7 @@ const FormAddEntry = () => {
             className={`${errors.amount && touched.amount ? "mb-0" : "mb-20"} p-2 border-2 border-blue-500`}
             id="amount"
             name="amount"
-            placeholder="pas envie d'ecrire"
+            placeholder="Add MONEY"
           ></Field>
           {touched.amount && errors.amount && <div className="mb-20 text-red-500">{errors.amount}</div>}
 
@@ -55,7 +55,7 @@ const FormAddEntry = () => {
             as="textarea"
             id="description"
             name="description"
-            placeholder="pas envie d'ecrire 2"
+            placeholder="Add description"
           ></Field>
           {touched.description && errors.description && (
             <div className="mb-20 text-red-500">{errors.description}</div>
