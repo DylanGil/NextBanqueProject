@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from "react"
-import AppContext from "../AppContext"
+import AppContext from "./AppContext"
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 
@@ -8,7 +8,7 @@ const FormAddEntry = () => {
 
   const AddEntrySchema = Yup.object().shape({
     amount: Yup.number()
-      .typeError("ECRIS UN NOMBRE MR. AVETIS")
+      .typeError("Write a number please")
       .test(
         "amount = 0",
         "Amount must not be one of the following values: 0",
@@ -43,25 +43,25 @@ const FormAddEntry = () => {
       {({ errors, touched }) => (
         <Form className="bg-gray-100 w-1/2 m-auto p-52 flex flex-col">
           <Field
-            className={`${errors.amount && touched.amount ? "mb-0" : "mb-20"} p-2`}
+            className={`${errors.amount && touched.amount ? "mb-0" : "mb-20"} p-2 border-2 border-blue-500`}
             id="amount"
             name="amount"
             placeholder="pas envie d'ecrire"
           ></Field>
-          {touched.amount && errors.amount && <div className="mb-20">{errors.amount}</div>}
+          {touched.amount && errors.amount && <div className="mb-20 text-red-500">{errors.amount}</div>}
 
           <Field
-            className={`${errors.description && touched.description ? "mb-0" : "mb-20"} p-2`}
+            className={`${errors.description && touched.description ? "mb-0" : "mb-20"} p-2 border-2 border-blue-500`}
             as="textarea"
             id="description"
             name="description"
             placeholder="pas envie d'ecrire 2"
           ></Field>
           {touched.description && errors.description && (
-            <div className="mb-20">{errors.description}</div>
+            <div className="mb-20 text-red-500">{errors.description}</div>
           )}
 
-          <button type="submit">Ajouter</button>
+          <button type="submit" className="border-2 bg-slate-700 text-white">ADD</button>
         </Form>
       )}
     </Formik>

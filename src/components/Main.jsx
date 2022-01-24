@@ -11,7 +11,7 @@ const Main = () => {
     useContext(AppContext)
 
   const formatDataNegative = (str) => {
-    return String(str).slice(1)
+    return String(str).slice(1) || 0
   }
 
   return (
@@ -30,11 +30,11 @@ const Main = () => {
             {listOperations.map(({ value, description }, index) => {
               if (value < 0) {
                 return (
-                  <ListItem
+                  <ListItem className="break-all"
                     key={index}
                     sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
                   >
-                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                    <ListItemText sx={{ textAlign: "right", minHeight: "64px" }}>
                       <div> </div>
                       <div> </div>
                     </ListItemText>
@@ -42,11 +42,11 @@ const Main = () => {
                 )
               } else {
                 return (
-                  <ListItem
+                  <ListItem className="break-all"
                     key={index}
                     sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
                   >
-                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                    <ListItemText sx={{ textAlign: "right", minHeight: "64px" }}>
                       <Typography sx={{ color: "#1CE800" }}>
                         {"+$" + value}
                       </Typography>
@@ -90,11 +90,11 @@ const Main = () => {
             {listOperations.map(({ value, description }, index) => {
               if (value > 0) {
                 return (
-                  <ListItem
+                  <ListItem className="break-all"
                     key={index}
                     sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
                   >
-                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                    <ListItemText sx={{ textAlign: "right", minHeight: "64px" }}>
                       <div> </div>
                       <div> </div>
                     </ListItemText>
@@ -102,11 +102,11 @@ const Main = () => {
                 )
               } else {
                 return (
-                  <ListItem
+                  <ListItem className="break-all"
                     key={index}
                     sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
                   >
-                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                    <ListItemText sx={{ textAlign: "right", minHeight: "64px" }}>
                       <Typography sx={{ color: "#F33731" }}>
                         {"-$" + formatDataNegative(value)}
                       </Typography>
