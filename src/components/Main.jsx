@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import { Box, Grid, Typography } from "@mui/material";
-import AppContext from "./AppContext";
+import React, { useContext } from "react"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemText from "@mui/material/ListItemText"
+import Divider from "@mui/material/Divider"
+import { Box, Grid, Typography } from "@mui/material"
+import AppContext from "./AppContext"
 
-const Main = (props) => {
-  const compteur = 0;
+const Main = () => {
   const { listOperations, totalIncomming, totalOutgoing } =
-    useContext(AppContext);
+    useContext(AppContext)
 
   const formatDataNegative = (str) => {
-    return String(str).slice(1);
-  };
+    return String(str).slice(1)
+  }
 
   return (
     <>
@@ -28,37 +27,36 @@ const Main = (props) => {
               </ListItemText>
             </ListItem>
             <Divider />
-            {listOperations.map(({ somme, description, index }) => {
-              if (somme < 0) {
+            {listOperations.map(({ value, description }, index) => {
+              if (value < 0) {
                 return (
-                  <>
-                    <ListItem
-                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
-                    >
-                      <ListItemText sx={{ textAlign: "right", height: "64px" }}>
-                        <div>&nbsp;</div>
-                        <div>&nbsp;</div>
-                      </ListItemText>{" "}
-                    </ListItem>
-                  </>
-                );
-              } else
+                  <ListItem
+                    key={index}
+                    sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                  >
+                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                      <div> </div>
+                      <div> </div>
+                    </ListItemText>
+                  </ListItem>
+                )
+              } else {
                 return (
-                  <>
-                    <ListItem
-                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
-                    >
-                      <ListItemText sx={{ textAlign: "right", height: "64px" }}>
-                        <Typography sx={{ color: "#1CE800" }}>
-                          {"+$" + somme}
-                        </Typography>
-                        <Typography sx={{ fontStyle: "italic" }}>
-                          {description}
-                        </Typography>
-                      </ListItemText>
-                    </ListItem>
-                  </>
-                );
+                  <ListItem
+                    key={index}
+                    sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                  >
+                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                      <Typography sx={{ color: "#1CE800" }}>
+                        {"+$" + value}
+                      </Typography>
+                      <Typography sx={{ fontStyle: "italic" }}>
+                        {description}
+                      </Typography>
+                    </ListItemText>
+                  </ListItem>
+                )
+              }
             })}
             <Divider />
             <ListItem>
@@ -89,37 +87,36 @@ const Main = (props) => {
               </ListItemText>
             </ListItem>
             <Divider />
-            {listOperations.map(({ somme, description, index }) => {
-              if (somme > 0) {
+            {listOperations.map(({ value, description }, index) => {
+              if (value > 0) {
                 return (
-                  <>
-                    <ListItem
-                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
-                    >
-                      <ListItemText sx={{ textAlign: "right", height: "64px" }}>
-                        <div>&nbsp;</div>
-                        <div>&nbsp;</div>
-                      </ListItemText>{" "}
-                    </ListItem>
-                  </>
-                );
-              } else
+                  <ListItem
+                    key={index}
+                    sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                  >
+                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                      <div> </div>
+                      <div> </div>
+                    </ListItemText>
+                  </ListItem>
+                )
+              } else {
                 return (
-                  <>
-                    <ListItem
-                      sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
-                    >
-                      <ListItemText sx={{ textAlign: "right", height: "64px" }}>
-                        <Typography sx={{ color: "#F33731" }}>
-                          {"-$" + formatDataNegative(somme)}
-                        </Typography>
-                        <Typography sx={{ fontStyle: "italic" }}>
-                          {description}
-                        </Typography>
-                      </ListItemText>
-                    </ListItem>
-                  </>
-                );
+                  <ListItem
+                    key={index}
+                    sx={{ bgcolor: index % 2 == 0 ? "white" : "#EFF3F8" }}
+                  >
+                    <ListItemText sx={{ textAlign: "right", height: "64px" }}>
+                      <Typography sx={{ color: "#F33731" }}>
+                        {"-$" + formatDataNegative(value)}
+                      </Typography>
+                      <Typography sx={{ fontStyle: "italic" }}>
+                        {description}
+                      </Typography>
+                    </ListItemText>
+                  </ListItem>
+                )
+              }
             })}
             <Divider />
             <ListItem>
@@ -177,7 +174,7 @@ const Main = (props) => {
         </Grid>
       </Grid>
     </>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main

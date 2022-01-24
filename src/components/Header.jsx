@@ -1,8 +1,7 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
-import Link from "next/link";
-import { Box } from "@mui/system";
-import MenuIcon from "@mui/icons-material/Menu";
-import "@fontsource/roboto/700.css";
+import { AppBar, Button, Toolbar, Typography } from "@mui/material"
+import Link from "next/link"
+import { Box } from "@mui/system"
+import "@fontsource/roboto/700.css"
 
 const Header = () => {
   return (
@@ -21,7 +20,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
     </Box>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

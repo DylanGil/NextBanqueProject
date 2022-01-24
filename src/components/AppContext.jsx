@@ -1,70 +1,75 @@
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react"
 
-const AppContext = createContext({});
+const AppContext = createContext({})
+
+const save = (datas) => {
+  localStorage.setItem("datas", JSON.stringify(datas))
+}
 
 export const AppContextProvider = (props) => {
-  const [totalIncomming, setTotalIncomming] = useState(0);
-  const [totalOutgoing, setTotalOutgoing] = useState(0);
-  const [index, setIndex] = useState(0);
-  const [listOperations, setListOperations] = useState([
-    {
-      index: 0,
-      somme: 2000,
-      description: "J'ajoute mon argent",
-    },
-    {
-      index: 1,
-      somme: -100,
-      description: "On me vole",
-    },
-    {
-      index: 2,
-      somme: -1000,
-      description: "AU VOLEUR !",
-    },
-    {
-        index: 3,
-        somme: 50,
-        description: "Au moins j'ai 50$...",
-      },
-      {
-        index: 4,
-        somme: -100,
-        description: "J'ai payé le mcdo",
-      },
-  ]);
+  const [totalIncomming, setTotalIncomming] = useState(0)
+  const [totalOutgoing, setTotalOutgoing] = useState(0)
+  const [listOperations, setListOperations] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     let resIn = listOperations.reduce((total, current) => {
-      if (current.somme > 0) {
-        return Number(total) + Number(current.somme);
+      if (current.value > 0) {
+        return Number(total) + Number(current.value)
       }
-      return Number(total) + 0;
-    }, 0);
 
+      return Number(total) + 0
+    }, 0)
+
+    setTotalIncomming(resIn)
+  }, [listOperations])
+
+  useEffect(() => {
     let resOut = listOperations.reduce((total, current) => {
-      if (current.somme < 0) {
-        return Number(total) + Number(current.somme);
+      if (current.value < 0) {
+        return Number(total) + Number(current.value)
       }
-      return Number(total) + 0;
-    }, 0);
-    setTotalIncomming(totalIncomming + resIn);
-    setTotalOutgoing(totalOutgoing + resOut);
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listOperations]);
 
-  const handleSetDataList = useCallback((data) => {
-    setIndex(index + 1);
-    setListData([...listData, {...data, index: index}])
+      return Number(total) + 0
+    }, 0)
+
+    setTotalOutgoing(resOut)
+  }, [listOperations])
+
+  useEffect(() => {
+    const localStorageDatas = localStorage.getItem("datas")
+
+    if (!localStorageDatas) {
+      setLoaded(true)
+
+      return
+    }
+
+    const datas = JSON.parse(localStorageDatas)
+
+    setListOperations(datas)
+    setLoaded(true)
   }, [])
+
+  useEffect(() => {
+    if (!loaded) {
+      return
+    }
+
+    save(listOperations)
+  }, [loaded, listOperations])
+
+  const addDatas = useCallback(
+    (data) => setListOperations((currentdatas) => [...currentdatas, data]),
+    []
+  )
 
   return (
     <AppContext.Provider
       {...props}
-      value={{ listOperations, totalIncomming, totalOutgoing, handleSetDataList }}
+      value={{ listOperations, totalIncomming, totalOutgoing, addDatas }}
     />
-  );
-};
+  )
+}
 
-export default AppContext;
+export default AppContext
